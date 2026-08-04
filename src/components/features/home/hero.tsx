@@ -1,99 +1,207 @@
+"use client";
+
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { siteConfig } from "@/config/site";
 
-export function HomeHero() {
-  return (
-    <section className="relative overflow-hidden bg-neutral-950 text-white py-24 md:py-36">
-      {/* Dynamic Glow Accents */}
-      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-amber-600/15 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 rounded-full bg-amber-900/20 blur-3xl pointer-events-none" />
+const TOTAL_USER_FRAMES = 112;
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Text & Content Column */}
-          <div className="lg:col-span-7 space-y-8">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-950/80 border border-amber-800/60 text-amber-300 text-xs font-semibold uppercase tracking-widest backdrop-blur-md shadow-sm">
-              <span className="h-2 w-2 rounded-full bg-amber-400 animate-pulse" />
-              <span>Luxury Bridal & Editorial Artistry</span>
+const getUserFramePath = (index: number) => {
+  const frameNumber = String(index + 1).padStart(3, "0");
+  return `/user-hero-frames/frame-${frameNumber}.jpg`;
+};
+
+export function HomeHero() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const imagesRef = useRef<HTMLImageElement[]>([]);
+  const [currentFrame, setCurrentFrame] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Preload extracted 2944x1170 Ultra-HD frames
+  useEffect(() => {
+    const loadedImages: HTMLImageElement[] = [];
+    for (let i = 0; i < TOTAL_USER_FRAMES; i++) {
+      const img = new Image();
+      img.src = getUserFramePath(i);
+      img.onload = () => {
+        if (i === 0) {
+          drawFrame(0);
+        }
+      };
+      loadedImages.push(img);
+    }
+    imagesRef.current = loadedImages;
+  }, []);
+
+  // Instant 60fps Canvas Drawing with HiDPI Retina support
+  const drawFrame = (frameIndex: number) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const img = imagesRef.current[frameIndex];
+    if (!img || !img.complete || img.naturalWidth === 0) return;
+
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const displayWidth = canvas.clientWidth || window.innerWidth;
+    const displayHeight = canvas.clientHeight || window.innerHeight;
+
+    if (canvas.width !== displayWidth * dpr || canvas.height !== displayHeight * dpr) {
+      canvas.width = displayWidth * dpr;
+      canvas.height = displayHeight * dpr;
+    }
+
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = "high";
+
+    const canvasWidth = displayWidth;
+    const canvasHeight = displayHeight;
+    const imgWidth = img.naturalWidth;
+    const imgHeight = img.naturalHeight;
+
+    const scale = Math.max(canvasWidth / imgWidth, canvasHeight / imgHeight);
+    const x = (canvasWidth - imgWidth * scale) / 2;
+    const y = (canvasHeight - imgHeight * scale) / 2;
+
+    ctx.save();
+    ctx.scale(dpr, dpr);
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    ctx.drawImage(img, x, y, imgWidth * scale, imgHeight * scale);
+    ctx.restore();
+  };
+
+  // Resize canvas handler
+  useEffect(() => {
+    const handleResize = () => {
+      drawFrame(currentFrame);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [currentFrame]);
+
+  // Sticky Scroll Handler: maps scroll distance within sticky hero track to 112 frames
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (!containerRef.current) return;
+
+          const containerTop = containerRef.current.offsetTop;
+          const containerHeight = containerRef.current.clientHeight;
+          const viewportHeight = window.innerHeight;
+          const scrollY = window.scrollY;
+
+          const maxScrollableDistance = containerHeight - viewportHeight;
+          const relativeScroll = scrollY - containerTop;
+          const progress = maxScrollableDistance > 0
+            ? Math.min(Math.max(relativeScroll / maxScrollableDistance, 0), 1)
+            : 0;
+
+          setScrollProgress(progress);
+
+          const frameIndex = Math.min(
+            Math.floor(progress * (TOTAL_USER_FRAMES - 1)),
+            TOTAL_USER_FRAMES - 1
+          );
+
+          setCurrentFrame(frameIndex);
+          drawFrame(frameIndex);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Smooth scroll-driven text fade
+  const textOpacity = scrollProgress > 0.03
+    ? Math.max(0, 1 - (scrollProgress - 0.03) * 6)
+    : 1;
+
+  return (
+    /* Outer Sticky Scroll Track - 250vh tall to allow full smooth 60fps scrub */
+    <div ref={containerRef} className="relative h-[250vh] bg-transparent">
+      {/* Sticky Viewport Shell - Pins to screen until frames finish */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
+        {/* Full Viewport Pure Canvas Layer - 100% Brightness & Zero Overlays */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <canvas
+            ref={canvasRef}
+            className="h-full w-full object-cover opacity-100"
+          />
+        </div>
+
+        {/* Custom Sidodadi Light Local Font Typography Overlay */}
+        <div
+          className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full py-12 transition-all duration-300 ease-out flex flex-col justify-between h-full"
+          style={{
+            opacity: textOpacity,
+            transform: `translateY(${(-1 + textOpacity) * 20}px)`,
+            pointerEvents: textOpacity < 0.1 ? "none" : "auto",
+          }}
+        >
+          {/* Spacer for Navbar */}
+          <div className="h-20" />
+
+          {/* Main Hero Content (Sidodadi Light Font) */}
+          <div className="max-w-xl space-y-5 my-auto">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950 text-emerald-200 text-xs font-semibold uppercase tracking-widest backdrop-blur-md shadow-md">
+              🌱 100% USDA ORGANIC
             </div>
 
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif font-normal tracking-tight leading-[1.1] text-white">
-              Unveil Your Natural <br />
-              <span className="italic font-light text-amber-200 underline decoration-amber-500/40 underline-offset-8">
-                Radiant Luster
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-serif font-normal tracking-tight text-emerald-950 leading-[1.05] drop-shadow-sm">
+              Pure Organic <br />
+              <span className="font-serif text-emerald-800 text-6xl sm:text-8xl lg:text-9xl block mt-1 drop-shadow-sm">
+                Goodness For Baby
               </span>
             </h1>
 
-            <p className="text-base sm:text-lg text-neutral-300 max-w-2xl font-light leading-relaxed">
-              {siteConfig.artist.bio} High-definition skin preparation, bespoke color harmony, and long-wear luxury techniques tailored for your most memorable moments.
+            <p className="text-base sm:text-xl text-emerald-950  leading-relaxed max-w-md font-sans">
+              Nutrient-dense 100% organic purees crafted with real banana, chickpeas, and fresh greens. Zero added sugar.
             </p>
 
-            <div className="pt-2 flex flex-wrap gap-4 items-center">
+            <div className="pt-3 flex items-center gap-4 font-sans">
               <Link
-                href="/booking"
-                className="inline-flex items-center justify-center bg-amber-400 hover:bg-amber-300 text-neutral-950 font-semibold px-8 py-4 rounded-full text-base transition-all transform hover:-translate-y-0.5 shadow-xl shadow-amber-400/20"
+                href="/services"
+                className="inline-flex items-center justify-center bg-emerald-800 hover:bg-emerald-900 text-white font-semibold px-8 py-4 rounded-full text-base transition-all shadow-xl hover:shadow-emerald-900/30 transform hover:-translate-y-0.5"
               >
-                Reserve Your Date
+                Shop Organic Pouches
               </Link>
               <Link
-                href="/portfolio"
-                className="inline-flex items-center justify-center border border-neutral-700/80 bg-neutral-900/50 hover:bg-neutral-800 text-white font-medium px-8 py-4 rounded-full text-base transition-all backdrop-blur-md"
+                href="/about"
+                className="inline-flex items-center justify-center border-2 border-emerald-900/40 bg-white/70 hover:bg-white text-emerald-950 font-semibold px-8 py-4 rounded-full text-base transition-all backdrop-blur-md shadow-sm"
               >
-                View Lookbook Gallery
+                Our Ingredients
               </Link>
-            </div>
-
-            {/* Quick Metrics */}
-            <div className="pt-8 border-t border-neutral-800/80 grid grid-cols-3 gap-6 max-w-lg">
-              <div>
-                <p className="text-3xl font-serif font-medium text-white">10+</p>
-                <p className="text-xs text-neutral-400 font-mono mt-1">Years Experience</p>
-              </div>
-              <div>
-                <p className="text-3xl font-serif font-medium text-white">450+</p>
-                <p className="text-xs text-neutral-400 font-mono mt-1">Happy Brides</p>
-              </div>
-              <div>
-                <p className="text-3xl font-serif font-medium text-white">5.0 ★</p>
-                <p className="text-xs text-neutral-400 font-mono mt-1">Client Rating</p>
-              </div>
             </div>
           </div>
 
-          {/* Luxury Visual Frame */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              {/* Decorative Frame border */}
-              <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-amber-500/30 to-amber-900/10 blur-xl opacity-75" />
-
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-neutral-800 bg-neutral-900 group">
-                <img
-                  src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=1000&auto=format&fit=crop"
-                  alt="Luxury Bridal Makeup"
-                  className="w-full h-[520px] object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent" />
-
-                {/* Floating Artist Badge */}
-                <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-neutral-900/80 backdrop-blur-md border border-neutral-700/60 shadow-lg flex items-center gap-4">
-                  <div className="h-12 w-12 rounded-full overflow-hidden shrink-0 border border-amber-400">
-                    <img
-                      src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=200&auto=format&fit=crop"
-                      alt={siteConfig.artist.name}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <p className="text-sm font-serif font-semibold text-white">{siteConfig.artist.name}</p>
-                    <p className="text-xs font-mono text-amber-300">{siteConfig.artist.role}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* Bottom Scroll Cue */}
+          <div className="text-center animate-bounce text-xs font-mono text-emerald-900 font-semibold tracking-widest uppercase pb-4">
+            ↓ Scroll down to explore pouch animation
           </div>
         </div>
+
+        {/* Minimal Floating Frame Badge when text is hidden */}
+        {textOpacity < 0.2 && (
+          <div className="absolute bottom-8 right-8 z-20 bg-emerald-950/90 border border-emerald-400/50 text-white px-4 py-2 rounded-full text-xs font-mono backdrop-blur-md shadow-2xl transition-all duration-300 flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
+            <span className="text-emerald-200 font-semibold">
+              ANIMATION {Math.round(scrollProgress * 100)}%
+            </span>
+          </div>
+        )}
       </div>
-    </section>
+    </div>
   );
 }
