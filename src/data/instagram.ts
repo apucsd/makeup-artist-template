@@ -1,0 +1,58 @@
+import { InstagramPost } from "@/types/instagram";
+
+export const instagramFeedData: InstagramPost[] = [
+  {
+    id: "insta-1",
+    imageUrl: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=600&auto=format&fit=crop",
+    caption: "Golden hour bridal perfection for @jessica_sterling 💫 Skin prep is 90% of the glow!",
+    likes: 1420,
+    comments: 86,
+    postUrl: "https://instagram.com",
+    tag: "#BridalGlam",
+  },
+  {
+    id: "insta-2",
+    imageUrl: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=600&auto=format&fit=crop",
+    caption: "Behind the scenes at Vogue Haute Couture shoot in LA. Soft smokey eyes with glass skin ✨",
+    likes: 2150,
+    comments: 114,
+    postUrl: "https://instagram.com",
+    tag: "#EditorialMakeup",
+  },
+  {
+    id: "insta-3",
+    imageUrl: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600&auto=format&fit=crop",
+    caption: "Red carpet ready for tonight's Gala. Classic red lip that stays put all night 💄",
+    likes: 980,
+    comments: 42,
+    postUrl: "https://instagram.com",
+    tag: "#RedCarpet",
+  },
+  {
+    id: "insta-4",
+    imageUrl: "https://images.unsplash.com/photo-1500840218059-b1d0017596c3?q=80&w=600&auto=format&fit=crop",
+    caption: "Close-up on skin texture and brushed brows. Minimalist, polished elegance 👌",
+    likes: 1840,
+    comments: 95,
+    postUrl: "https://instagram.com",
+    tag: "#SoftGlam",
+  },
+  {
+    id: "insta-5",
+    imageUrl: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=600&auto=format&fit=crop",
+    caption: "Private beauty masterclass session with @sophia_c! Teaching everyday contouring 🎨",
+    likes: 1320,
+    comments: 67,
+    postUrl: "https://instagram.com",
+    tag: "#BeautyMasterclass",
+  },
+  {
+    id: "insta-6",
+    imageUrl: "https://images.unsplash.com/photo-1526045612212-70caf35c14df?q=80&w=600&auto=format&fit=crop",
+    caption: "Bridal preview session for autumn Malibu wedding. Radiance that lasts all day 💍",
+    likes: 2490,
+    comments: 138,
+    postUrl: "https://instagram.com",
+    tag: "#MalibuBride",
+  },
+];
