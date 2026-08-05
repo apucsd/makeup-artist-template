@@ -7,27 +7,27 @@ export interface NavItem {
 export const navigationConfig = {
   mainNav: [
     { title: "Home", href: "/" },
-    { title: "Services", href: "/services" },
-    { title: "Portfolio", href: "/portfolio" },
-    { title: "About", href: "/about" },
+    { title: "Products", href: "/products" },
+    { title: "Ingredients & Flavors", href: "/ingredients-flavors" },
+    { title: "About Us", href: "/about" },
     { title: "Contact", href: "/contact" },
   ] as NavItem[],
   cta: {
-    title: "Book Appointment",
-    href: "/booking",
+    title: "Shop Organic Pouches",
+    href: "/shop",
   },
   footerNav: {
     explore: [
-      { title: "Services & Pricing", href: "/services" },
-      { title: "Portfolio Gallery", href: "/portfolio" },
-      { title: "About Elena", href: "/about" },
-      { title: "Book Session", href: "/booking" },
+      { title: "Products & Pricing", href: "/products" },
+      { title: "Ingredients & Flavors", href: "/ingredients-flavors" },
+      { title: "About Us", href: "/about" },
+      { title: "Order Subscription", href: "/shop" },
     ],
     services: [
-      { title: "Bridal Makeup", href: "/services#bridal" },
-      { title: "Editorial & Glam", href: "/services#editorial" },
-      { title: "Special Occasion", href: "/services#event" },
-      { title: "Private Lessons", href: "/services#lessons" },
+      { title: "Stage 1", href: "/products#stage1" },
+      { title: "Stage 2", href: "/products#stage2" },
+      { title: "Toddler", href: "/products#toddler" },
+      { title: "Custom Baby Food Box", href: "/products#custom" },
     ],
   },
 };

@@ -3,29 +3,29 @@ import { Testimonial } from "@/types/testimonial";
 export const testimonialsData: Testimonial[] = [
   {
     id: "review-1",
-    clientName: "Jessica Sterling",
-    role: "Bride",
+    clientName: "Sarah & Baby Liam",
+    role: "Mother of 8-Month-Old",
     quote:
-      "Elena made me feel like an absolute goddess on my wedding day! My makeup stayed flawless for 14 hours straight, through tears and dancing. Her calm energy during prep was priceless.",
+      "Cove Valley pouches have been a total lifesaver! The Banana, Ginger & Apple puree helped so much with Liam's digestion, and I love knowing it's 100% certified organic with zero added sugar.",
     rating: 5,
-    eventType: "Malibu Beach Bridal Makeup",
+    eventType: "Monthly Variety Subscription",
   },
   {
     id: "review-2",
-    clientName: "Camilla Rodriguez",
-    role: "Fashion Director",
+    clientName: "David Miller",
+    role: "Father of Twins (14-Months)",
     quote:
-      "Elena is our go-to makeup artist for all high-fashion lookbooks. Her attention to detail under studio lighting is unmatched, and she understands skin texture like no one else.",
+      "The Chickpea & Spinach Superfood pouches are our toddlers' absolute favorite. It's so hard to get them to eat greens, but they devour these in seconds on our morning park walks!",
     rating: 5,
-    eventType: "Editorial Campaign Shoot",
+    eventType: "Toddler Superfood Box",
   },
   {
     id: "review-3",
-    clientName: "Victoria Chen",
-    role: "Gala Host",
+    clientName: "Dr. Emily Watson, MD",
+    role: "Pediatrician & Mom",
     quote:
-      "I received endless compliments all evening! Elena listened to exactly what I wanted and created a soft glam look that enhanced my features perfectly without looking heavy.",
+      "As a pediatrician, I am extremely particular about baby food ingredients. Cove Valley Organics stands out for their clean farm sourcing, heavy metal testing, and well-balanced nutrition.",
     rating: 5,
-    eventType: "Red Carpet & Gala Event",
+    eventType: "Verified Organic Review",
   },
 ];

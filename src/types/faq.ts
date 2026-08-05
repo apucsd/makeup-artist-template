@@ -1,6 +1,6 @@
 export interface FAQItem {
   id: string;
-  category: "booking" | "travel" | "prep" | "hygiene";
+  category: "ordering" | "shipping" | "prep" | "safety";
   question: string;
   answer: string;
 }

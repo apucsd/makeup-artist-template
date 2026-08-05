@@ -3,37 +3,37 @@ import { FAQItem } from "@/types/faq";
 export const faqsData: FAQItem[] = [
   {
     id: "faq-1",
-    category: "booking",
-    question: "How far in advance should I book my bridal makeup artist?",
+    category: "ordering",
+    question: "Are all Cove Valley Organics purees 100% USDA Certified Organic?",
     answer:
-      "We recommend securing your date 6 to 12 months in advance, especially for peak wedding seasons (Spring and Autumn). A deposit and signed agreement reserve your date exclusively.",
+      "Yes, 100% of our fruit, vegetable, grain, and legume ingredients are certified organic by the USDA. We never use artificial preservatives, synthetic pesticides, or added sugars.",
   },
   {
     id: "faq-2",
     category: "prep",
-    question: "How should I prepare my skin on the morning of my appointment?",
+    question: "How long do the pouch purees stay fresh once opened?",
     answer:
-      "Arrive with clean, freshly washed skin and no remaining makeup. Exfoliate gently 24-48 hours before. Apply your basic moisturizer, and avoid trying new skincare products right before your event.",
+      "Unopened pouches are shelf-stable for up to 12 months. Once opened, cap tightly and refrigerate for up to 24 hours. For best flavor, serve room temperature or slightly chilled.",
   },
   {
     id: "faq-3",
-    category: "travel",
-    question: "Do you travel for destination weddings and on-location shoots?",
+    category: "shipping",
+    question: "How does cold-pack pouch shipping work?",
     answer:
-      "Absolutely. Elena and her team travel worldwide. Travel fees cover flights, accommodation, and transport based on venue distance.",
+      "We ship all pouch boxes in eco-friendly insulated packaging with biodegradable cold gel packs to ensure peak freshness upon arrival at your doorstep.",
   },
   {
     id: "faq-4",
-    category: "hygiene",
-    question: "What sanitation measures are taken for makeup application?",
+    category: "safety",
+    question: "What safety testing is done on your baby food pouches?",
     answer:
-      "Sanitation is our top priority. All brushes are deep sanitized between clients, single-use disposable wands are used for mascara/lips, and products are scooped onto stainless steel palettes.",
+      "Every batch undergoes rigorous third-party lab testing for heavy metals, pathogens, and pesticide residues before leaving our facility. Your baby's safety is our highest priority.",
   },
   {
     id: "faq-5",
-    category: "booking",
-    question: "Is a trial session included in the bridal package?",
+    category: "ordering",
+    question: "Can I customize the pouch flavors in my monthly subscription box?",
     answer:
-      "Yes, our Signature Bridal Experience includes a full 90-minute preview trial session where we craft and finalize your exact wedding day look.",
+      "Absolutely! You can log into your account anytime to pick your exact 16 or 24 pouch flavor blend, pause delivery, or adjust shipment frequency.",
   },
 ];

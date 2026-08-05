@@ -1,68 +1,108 @@
 import Link from "next/link";
 import React from "react";
-import { SectionHeader } from "@/components/common/section-header";
 import { siteConfig } from "@/config/site";
+import { ShieldCheck, Leaf, Heart, Sprout, Award, Truck } from "lucide-react";
 
 export const metadata = {
-  title: "About the Artist | Aura Beauty & Artistry",
-  description: "Learn about lead artist Elena Rostova, her beauty philosophy, credentials, and artistry approach.",
+  title: "About Us | Cove Valley Organics",
+  description: "Learn about our farm-to-pouch organic baby food philosophy, USDA organic certifications, and sustainable packaging.",
 };
 
 export default function AboutPage() {
   return (
-    <div className="py-16 md:py-24 space-y-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeader
-          badge="Behind the Artistry"
-          title={`About ${siteConfig.artist.name}`}
-          description={siteConfig.artist.role}
-        />
+    <div className="min-h-screen bg-[#F5F7EF] pt-28 pb-20 text-[#243314] font-sans">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E2E6D4] text-[#3E5028] text-xs font-bold uppercase tracking-wider">
+            <Sprout className="w-4 h-4 text-[#48592B]" />
+            Farm To Pouch Pure Nutrition
+          </div>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-extrabold text-[#243314] tracking-tight">
+            Our Organic Story & Philosophy
+          </h1>
+          <p className="text-base sm:text-lg text-[#4A5D37] leading-relaxed">
+            Founded on the belief that every baby deserves pure, nutrient-dense food made with 100% real organic ingredients—straight from local organic fields to your pouch.
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Artist Photo */}
+        {/* Story Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center bg-white border border-[#DCE1CF] rounded-3xl p-8 sm:p-12 shadow-sm">
           <div className="lg:col-span-5">
-            <div className="relative rounded-3xl overflow-hidden shadow-xl border border-neutral-200">
+            <div className="relative rounded-2xl overflow-hidden shadow-lg border border-[#DCE1CF]">
               <img
-                src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1000&auto=format&fit=crop"
-                alt={siteConfig.artist.name}
-                className="w-full h-[520px] object-cover object-center"
+                src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=1000&auto=format&fit=crop"
+                alt="Cove Valley Organic Farm"
+                className="w-full h-[450px] object-cover object-center"
               />
             </div>
           </div>
 
-          {/* Artist Bio & Philosophy */}
-          <div className="lg:col-span-7 space-y-6 text-neutral-700 leading-relaxed text-base">
-            <h3 className="font-serif text-2xl font-semibold text-neutral-900">
-              "Beauty isn't about masking who you are—it's about enhancing your authentic luminescence."
-            </h3>
+          <div className="lg:col-span-7 space-y-6 text-[#4A5D37] leading-relaxed text-base">
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#243314]">
+              "We care for your baby's growth and healthy wellbeing with zero compromises."
+            </h2>
 
             <p>
-              For over a decade, Elena has worked with brides, celebrities, and fashion houses to deliver timeless, elevated makeup looks. Trained under industry masters in Paris and Los Angeles, her signature style blends skin-first hydration with precise color harmonization.
+              Cove Valley Organics was born right on our family organic farm. When our founder couldn't find truly clean, unrefined baby purees without hidden concentrates or synthetic preservatives on supermarket shelves, we decided to craft our own.
             </p>
 
             <p>
-              Whether preparing a bride for her walk down the aisle or crafting a bold editorial concept for print campaigns, Elena brings an atmosphere of calm confidence, meticulous hygiene, and luxurious care to every chair.
+              Today, we collaborate with certified organic growers who cultivate heirloom produce in nutrient-rich organic soil. We gently cold-press and flash-steam our purees to lock in natural vitamins, vibrant colors, and authentic farm flavors.
             </p>
 
-            <div className="pt-4 grid grid-cols-2 gap-4 text-sm font-medium text-neutral-900 border-t border-neutral-200">
+            <div className="pt-4 grid grid-cols-2 gap-4 text-xs sm:text-sm font-bold text-[#243314] border-t border-[#EAECE1]">
               <div>
-                <span className="block text-xs font-mono text-amber-700 uppercase">Specialization</span>
-                Luxury Bridal & Soft Glam
+                <span className="block text-[10px] font-mono text-[#5C6E42] uppercase tracking-wider">Certification</span>
+                100% USDA Certified Organic
               </div>
               <div>
-                <span className="block text-xs font-mono text-amber-700 uppercase">Location Base</span>
-                {siteConfig.artist.location}
+                <span className="block text-[10px] font-mono text-[#5C6E42] uppercase tracking-wider">Farm Base</span>
+                Sunny Valley, CA Farm
               </div>
             </div>
 
-            <div className="pt-6">
+            <div className="pt-4">
               <Link
-                href="/booking"
-                className="inline-flex items-center justify-center bg-neutral-900 hover:bg-neutral-800 text-white rounded-full px-8 py-3.5 font-medium transition-colors"
+                href="/products"
+                className="inline-flex items-center justify-center bg-[#48592B] hover:bg-[#37461E] text-white rounded-full px-8 py-3.5 font-bold text-xs uppercase tracking-wider shadow-md transition-all"
               >
-                Reserve an Appointment
+                Explore Organic Pouches
               </Link>
             </div>
+          </div>
+        </div>
+
+        {/* Pillars / Values Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-[#E8EBDD] border border-[#D6DBC4] rounded-3xl p-8 space-y-4">
+            <div className="w-12 h-12 rounded-full bg-[#48592B] text-white flex items-center justify-center font-bold text-lg">
+              <Leaf className="w-6 h-6" />
+            </div>
+            <h3 className="font-serif font-bold text-xl text-[#243314]">100% Organic Soil</h3>
+            <p className="text-xs text-[#4A5D37] leading-relaxed">
+              We never use synthetic fertilizers or chemical pesticides. Our fruits and veggies grow naturally in living, nutrient-dense organic soil.
+            </p>
+          </div>
+
+          <div className="bg-[#E8EBDD] border border-[#D6DBC4] rounded-3xl p-8 space-y-4">
+            <div className="w-12 h-12 rounded-full bg-[#48592B] text-white flex items-center justify-center font-bold text-lg">
+              <Award className="w-6 h-6" />
+            </div>
+            <h3 className="font-serif font-bold text-xl text-[#243314]">Tested For Purity</h3>
+            <p className="text-xs text-[#4A5D37] leading-relaxed">
+              Independent 3rd-party lab testing on every single batch ensures zero heavy metals, zero pesticide residues, and zero artificial additives.
+            </p>
+          </div>
+
+          <div className="bg-[#E8EBDD] border border-[#D6DBC4] rounded-3xl p-8 space-y-4">
+            <div className="w-12 h-12 rounded-full bg-[#48592B] text-white flex items-center justify-center font-bold text-lg">
+              <Truck className="w-6 h-6" />
+            </div>
+            <h3 className="font-serif font-bold text-xl text-[#243314]">Eco-Friendly Pouches</h3>
+            <p className="text-xs text-[#4A5D37] leading-relaxed">
+              Packaged in BPA-free, PVC-free, recyclable pouches designed to keep food fresh without harmful plastic leaching.
+            </p>
           </div>
         </div>
       </div>

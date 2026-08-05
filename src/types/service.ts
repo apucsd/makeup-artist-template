@@ -1,4 +1,4 @@
-export type ServiceCategoryId = "bridal" | "glam" | "editorial" | "lessons";
+export type ServiceCategoryId = "stage1" | "stage2" | "toddler" | "custom";
 
 export interface ServiceItem {
   id: string;
