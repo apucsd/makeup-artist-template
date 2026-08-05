@@ -152,38 +152,7 @@ export function HomeHero() {
           {/* Spacer for Navbar */}
           <div className="h-24" />
 
-          {/* Main Desktop Hero Content */}
-          <div className="max-w-xl space-y-5 my-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950 text-emerald-200 text-xs font-semibold uppercase tracking-widest backdrop-blur-md shadow-md">
-              🌱 100% USDA ORGANIC
-            </div>
 
-            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-serif font-normal tracking-tight text-emerald-950 leading-[1.05] drop-shadow-sm">
-              Pure Organic <br />
-              <span className="font-serif text-emerald-800 text-6xl sm:text-8xl lg:text-9xl block mt-1 drop-shadow-sm">
-                Goodness For Baby
-              </span>
-            </h1>
-
-            <p className="text-base sm:text-xl text-emerald-950 leading-relaxed max-w-md font-sans">
-              Nutrient-dense 100% organic purees crafted with real banana, chickpeas, and fresh greens. Zero added sugar.
-            </p>
-
-            <div className="pt-3 flex items-center gap-4 font-sans">
-              <Link
-                href="/products"
-                className="inline-flex items-center justify-center bg-emerald-800 hover:bg-emerald-900 text-white font-semibold px-8 py-4 rounded-full text-base transition-all shadow-xl hover:shadow-emerald-900/30 transform hover:-translate-y-0.5"
-              >
-                Shop Organic Pouches
-              </Link>
-              <Link
-                href="/ingredients-flavors"
-                className="inline-flex items-center justify-center border-2 border-emerald-900/40 bg-white/70 hover:bg-white text-emerald-950 font-semibold px-8 py-4 rounded-full text-base transition-all backdrop-blur-md shadow-sm"
-              >
-                Our Ingredients
-              </Link>
-            </div>
-          </div>
 
           {/* Bottom Scroll Cue */}
           <div className="text-center animate-bounce text-xs font-mono text-emerald-900 font-semibold tracking-widest uppercase pb-4">

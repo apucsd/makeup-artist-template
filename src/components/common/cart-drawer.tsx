@@ -3,7 +3,6 @@
 import Link from "next/link";
 import React from "react";
 import {
-  X,
   ArrowRight,
   ShoppingBag,
   Trash2,
@@ -11,7 +10,6 @@ import {
   Minus,
   Truck,
   ShieldCheck,
-  Sparkles,
   CheckCircle2,
 } from "lucide-react";
 
@@ -53,18 +51,16 @@ export function CartDrawer({
     <div className="fixed inset-0 z-50 overflow-hidden font-sans">
       {/* Backdrop with Ultra-Light Minimal Tint */}
       <div
-        className={`fixed inset-0 bg-black/5 transition-opacity duration-300 ease-out ${
-          isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed inset-0 bg-black/5 transition-opacity duration-300 ease-out ${isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
         onClick={onClose}
       />
 
       {/* Side Panel Container with High-Brightness Luminous Glass */}
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-6 sm:pl-10">
         <div
-          className={`w-screen max-w-md bg-white/40 backdrop-blur-2xl backdrop-brightness-125 border-l border-white/80 shadow-2xl p-6 sm:p-8 flex flex-col justify-between overflow-y-auto transform transition-transform duration-350 ${
-            isVisible ? "translate-x-0" : "translate-x-full"
-          }`}
+          className={`w-screen max-w-md bg-white/40 backdrop-blur-2xl backdrop-brightness-125 border-l border-white/80 shadow-2xl p-6 sm:p-8 flex flex-col justify-between overflow-y-auto transform transition-transform duration-350 ${isVisible ? "translate-x-0" : "translate-x-full"
+            }`}
           style={{
             transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
           }}
@@ -74,7 +70,7 @@ export function CartDrawer({
             <div className="flex items-center justify-between pb-4 border-b border-[#D6DBC4]">
               <div>
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#E2E6D4] text-[#3E5028] text-[11px] font-bold uppercase tracking-wider mb-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#48592B] stroke-[1.5]" />
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#48592B] stroke-[1.25]" />
                   100% Organic Pouch Basket
                 </div>
                 <h2 className="text-2xl font-serif font-extrabold text-[#243314] tracking-tight flex items-center gap-2">
@@ -84,12 +80,24 @@ export function CartDrawer({
                   </span>
                 </h2>
               </div>
+
+              {/* Elongated & Thin Close X Icon */}
               <button
                 onClick={onClose}
-                className="p-2 rounded-full text-[#354721] hover:bg-[#EAECE1] transition-colors"
+                className="p-1.5 rounded-full text-[#354721] hover:bg-[#EAECE1] transition-colors"
                 aria-label="Close cart panel"
               >
-                <X className="w-6 h-6 stroke-[1.5]" />
+                <svg
+                  className="w-8 h-6 stroke-[#354721]"
+                  viewBox="0 0 36 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.25"
+                  strokeLinecap="round"
+                >
+                  <line x1="6" y1="3" x2="30" y2="21" />
+                  <line x1="6" y1="21" x2="30" y2="3" />
+                </svg>
               </button>
             </div>
 
@@ -97,12 +105,12 @@ export function CartDrawer({
             <div className="mt-4 bg-white/75 backdrop-blur-md border border-[#DCE1CF]/70 rounded-2xl p-3.5 shadow-sm space-y-2">
               <div className="flex items-center justify-between text-xs font-bold">
                 <span className="flex items-center gap-1.5 text-[#354721]">
-                  <Truck className="w-4 h-4 text-[#48592B] stroke-[1.5]" />
+                  <Truck className="w-4 h-4 text-[#48592B] stroke-[1.25]" />
                   {remainingForFreeShipping > 0 ? (
                     <>Add <strong className="text-[#48592B]">${remainingForFreeShipping.toFixed(2)}</strong> for FREE Shipping</>
                   ) : (
                     <span className="text-[#48592B] font-extrabold flex items-center gap-1">
-                      <CheckCircle2 className="w-4 h-4 text-[#48592B] fill-[#E2E6D4]" />
+                      <CheckCircle2 className="w-4 h-4 text-[#48592B] fill-[#E2E6D4] stroke-[1.25]" />
                       Unlocked FREE Cold Shipping!
                     </span>
                   )}
@@ -125,7 +133,7 @@ export function CartDrawer({
             {items.length === 0 ? (
               <div className="py-16 text-center space-y-4">
                 <div className="w-16 h-16 rounded-full bg-[#EAECE1] text-[#48592B] flex items-center justify-center mx-auto text-2xl">
-                  <ShoppingBag className="w-8 h-8 stroke-[1.5]" />
+                  <ShoppingBag className="w-8 h-8 stroke-[1.25]" />
                 </div>
                 <p className="text-base font-serif font-bold text-[#243314]">Your basket is empty!</p>
                 <p className="text-xs text-[#5C6E42]">Add some fresh organic purees to nourish your baby.</p>
@@ -173,7 +181,7 @@ export function CartDrawer({
                       className="text-[#9EAB89] hover:text-red-700 p-0.5 transition-colors"
                       aria-label="Remove item"
                     >
-                      <Trash2 className="w-3.5 h-3.5 stroke-[1.5]" />
+                      <Trash2 className="w-4 h-4 stroke-[1.25]" />
                     </button>
 
                     <div className="flex items-center gap-1.5 bg-[#F5F7EF] border border-[#DCE1CF] rounded-full px-1.5 py-0.5">
@@ -181,7 +189,7 @@ export function CartDrawer({
                         onClick={() => onUpdateQuantity(item.id, -1)}
                         className="w-5 h-5 flex items-center justify-center text-xs font-bold text-[#243314] hover:bg-[#EAECE1] rounded-full transition-colors"
                       >
-                        <Minus className="w-3 h-3 stroke-[1.5]" />
+                        <Minus className="w-3 h-3 stroke-[1.25]" />
                       </button>
                       <span className="text-xs font-bold px-1 text-[#243314]">
                         {item.quantity}
@@ -190,7 +198,7 @@ export function CartDrawer({
                         onClick={() => onUpdateQuantity(item.id, 1)}
                         className="w-5 h-5 flex items-center justify-center text-xs font-bold text-[#243314] hover:bg-[#EAECE1] rounded-full transition-colors"
                       >
-                        <Plus className="w-3 h-3 stroke-[1.5]" />
+                        <Plus className="w-3 h-3 stroke-[1.25]" />
                       </button>
                     </div>
                   </div>
@@ -229,7 +237,7 @@ export function CartDrawer({
               className="block w-full bg-[#48592B] hover:bg-[#37461E] text-white font-bold text-sm text-center py-4 rounded-full uppercase tracking-wider shadow-lg hover:shadow-emerald-900/20 transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5"
             >
               <span>Proceed to Checkout</span>
-              <ArrowRight className="w-4 h-4 stroke-[1.5]" />
+              <ArrowRight className="w-5 h-4 stroke-[1.25]" />
             </Link>
           </div>
         </div>
