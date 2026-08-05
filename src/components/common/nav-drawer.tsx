@@ -38,18 +38,18 @@ export function NavDrawer({
 
   return (
     <div className="fixed inset-0 z-50 overflow-hidden font-sans">
-      {/* Backdrop with Smooth Fade In/Out */}
+      {/* Backdrop with Ultra-Light Minimal Tint */}
       <div
-        className={`fixed inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300 ease-out ${
+        className={`fixed inset-0 bg-black/5 transition-opacity duration-300 ease-out ${
           isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={onClose}
       />
 
-      {/* Side Panel Container with Spring Physics Curve */}
+      {/* Side Panel Container with High-Brightness Luminous Glass */}
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-6 sm:pl-10">
         <div
-          className={`w-screen max-w-md bg-[#F5F7EF]/55 backdrop-blur-2xl border-l border-[#D6DBC4]/60 shadow-2xl p-6 sm:p-8 flex flex-col justify-between overflow-y-auto transform transition-transform duration-350 ${
+          className={`w-screen max-w-md bg-white/40 backdrop-blur-2xl backdrop-brightness-125 border-l border-white/80 shadow-2xl p-6 sm:p-8 flex flex-col justify-between overflow-y-auto transform transition-transform duration-350 ${
             isVisible ? "translate-x-0" : "translate-x-full"
           }`}
           style={{

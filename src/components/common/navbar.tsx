@@ -199,7 +199,7 @@ export function Navbar() {
             className="p-1.5 text-[#48592B] hover:text-[#243314] focus:outline-none transition-colors"
             aria-label="Toggle Navigation Drawer"
           >
-            <HamburgerIcon isOpen={drawerOpen && isVisible} />
+            <HamburgerIcon />
           </button>
         </div>
       </div>
