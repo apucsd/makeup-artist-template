@@ -83,7 +83,7 @@ export function HomeHero() {
     return () => window.removeEventListener("resize", handleResize);
   }, [currentFrame]);
 
-  // Sticky Scroll Handler: maps scroll distance within sticky hero track to 112 frames
+  // Sticky Scroll Handler
   useEffect(() => {
     let ticking = false;
 
@@ -129,11 +129,10 @@ export function HomeHero() {
     : 1;
 
   return (
-    /* Outer Sticky Scroll Track - 250vh tall to allow full smooth 60fps scrub */
     <div ref={containerRef} className="relative h-[250vh] bg-transparent">
-      {/* Sticky Viewport Shell - Pins to screen until frames finish */}
+      {/* Sticky Viewport Shell */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
-        {/* Full Viewport Pure Canvas Layer - 100% Brightness & Zero Overlays */}
+        {/* Full Viewport Canvas Layer */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <canvas
             ref={canvasRef}
@@ -141,9 +140,9 @@ export function HomeHero() {
           />
         </div>
 
-        {/* Custom Sidodadi Light Local Font Typography Overlay */}
+        {/* Content Typography Overlay - Hidden on Mobile, Shown on Desktop/Tablet */}
         <div
-          className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full py-12 transition-all duration-300 ease-out flex flex-col justify-between h-full"
+          className="hidden sm:flex relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full py-12 transition-all duration-300 ease-out flex-col justify-between h-full"
           style={{
             opacity: textOpacity,
             transform: `translateY(${(-1 + textOpacity) * 20}px)`,
@@ -151,9 +150,9 @@ export function HomeHero() {
           }}
         >
           {/* Spacer for Navbar */}
-          <div className="h-20" />
+          <div className="h-24" />
 
-          {/* Main Hero Content (Sidodadi Light Font) */}
+          {/* Main Desktop Hero Content */}
           <div className="max-w-xl space-y-5 my-auto">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950 text-emerald-200 text-xs font-semibold uppercase tracking-widest backdrop-blur-md shadow-md">
               🌱 100% USDA ORGANIC
@@ -166,19 +165,19 @@ export function HomeHero() {
               </span>
             </h1>
 
-            <p className="text-base sm:text-xl text-emerald-950  leading-relaxed max-w-md font-sans">
+            <p className="text-base sm:text-xl text-emerald-950 leading-relaxed max-w-md font-sans">
               Nutrient-dense 100% organic purees crafted with real banana, chickpeas, and fresh greens. Zero added sugar.
             </p>
 
             <div className="pt-3 flex items-center gap-4 font-sans">
               <Link
-                href="/services"
+                href="/products"
                 className="inline-flex items-center justify-center bg-emerald-800 hover:bg-emerald-900 text-white font-semibold px-8 py-4 rounded-full text-base transition-all shadow-xl hover:shadow-emerald-900/30 transform hover:-translate-y-0.5"
               >
                 Shop Organic Pouches
               </Link>
               <Link
-                href="/about"
+                href="/ingredients-flavors"
                 className="inline-flex items-center justify-center border-2 border-emerald-900/40 bg-white/70 hover:bg-white text-emerald-950 font-semibold px-8 py-4 rounded-full text-base transition-all backdrop-blur-md shadow-sm"
               >
                 Our Ingredients
@@ -192,9 +191,14 @@ export function HomeHero() {
           </div>
         </div>
 
-        {/* Minimal Floating Frame Badge when text is hidden */}
+        {/* Minimal Scroll Indicator for Mobile Devices */}
+        <div className="sm:hidden absolute bottom-6 inset-x-0 z-10 text-center animate-bounce text-xs font-mono text-emerald-950 font-bold tracking-widest uppercase pointer-events-none drop-shadow-md">
+          ↓ SCROLL DOWN
+        </div>
+
+        {/* Floating Frame Badge when text is hidden */}
         {textOpacity < 0.2 && (
-          <div className="absolute bottom-8 right-8 z-20 bg-emerald-950/90 border border-emerald-400/50 text-white px-4 py-2 rounded-full text-xs font-mono backdrop-blur-md shadow-2xl transition-all duration-300 flex items-center gap-2">
+          <div className="absolute bottom-6 right-6 z-20 bg-emerald-950/90 border border-emerald-400/50 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[10px] sm:text-xs font-mono backdrop-blur-md shadow-2xl transition-all duration-300 flex items-center gap-2">
             <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
             <span className="text-emerald-200 font-semibold">
               ANIMATION {Math.round(scrollProgress * 100)}%

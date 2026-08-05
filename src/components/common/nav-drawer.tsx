@@ -49,7 +49,7 @@ export function NavDrawer({
       {/* Side Panel Container with Spring Physics Curve */}
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-6 sm:pl-10">
         <div
-          className={`w-screen max-w-md bg-[#F5F7EF] border-l border-[#D6DBC4] shadow-2xl p-6 sm:p-8 flex flex-col justify-between overflow-y-auto transform transition-transform duration-350 ${
+          className={`w-screen max-w-md bg-[#F5F7EF]/55 backdrop-blur-2xl border-l border-[#D6DBC4]/60 shadow-2xl p-6 sm:p-8 flex flex-col justify-between overflow-y-auto transform transition-transform duration-350 ${
             isVisible ? "translate-x-0" : "translate-x-full"
           }`}
           style={{
