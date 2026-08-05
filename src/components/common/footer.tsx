@@ -18,7 +18,7 @@ export function Footer() {
               {siteConfig.description}
             </p>
             <div className="pt-2 text-xs text-[#A4C46A] flex items-center gap-1.5 font-medium">
-              <ShieldCheck className="w-4 h-4" />
+              <ShieldCheck className="w-4 h-4 stroke-[1.5]" />
               <span>100% Certified USDA Organic</span>
             </div>
           </div>
@@ -62,19 +62,19 @@ export function Footer() {
             </h4>
             <div className="text-xs space-y-2.5 text-[#B8C8A3]">
               <p className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-[#A4C46A]" />
+                <Mail className="w-4 h-4 text-[#A4C46A] stroke-[1.5]" />
                 <a href={`mailto:${siteConfig.contact.email}`} className="hover:text-[#A4C46A] transition-colors">
                   {siteConfig.contact.email}
                 </a>
               </p>
               <p className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-[#A4C46A]" />
+                <Phone className="w-4 h-4 text-[#A4C46A] stroke-[1.5]" />
                 <a href={`tel:${siteConfig.contact.phone}`} className="hover:text-[#A4C46A] transition-colors">
                   {siteConfig.contact.phone}
                 </a>
               </p>
               <p className="flex items-center gap-2">
-                <Globe className="w-4 h-4 text-[#A4C46A]" />
+                <Globe className="w-4 h-4 text-[#A4C46A] stroke-[1.5]" />
                 <a href={siteConfig.contact.instagramUrl} target="_blank" rel="noreferrer" className="hover:text-[#A4C46A] transition-colors">
                   {siteConfig.contact.instagram}
                 </a>
