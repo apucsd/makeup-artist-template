@@ -57,7 +57,7 @@ export function IngredientShowcase() {
         ))}
       </div>
 
-      <div className="bg-[#F3F5EC]">
+      <div className="bg-[radial-gradient(ellipse_at_top,#DBEECB_0%,#D3EBC4_60%,#C9E6BD_100%)]">
         <img src="/images/three-product.png" alt="" className="w-full h-full object-contain" />
       </div>
     </section>

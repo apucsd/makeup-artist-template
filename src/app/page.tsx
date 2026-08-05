@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { HomeHero } from "@/components/features/home/hero";
 import { IngredientShowcase } from "@/components/features/home/ingredient-showcase";
+import { OurMission } from "@/components/features/home/our-mission";
 import { SectionHeader } from "@/components/common/section-header";
 import { ServiceCard } from "@/components/features/services/service-card";
 import { PortfolioGrid } from "@/components/features/portfolio/portfolio-grid";
@@ -22,6 +23,9 @@ export default function HomePage() {
 
       {/* 2. Full-Bleed Zero-Gap Ingredient Showcase Banner */}
       <IngredientShowcase />
+
+      {/* 3. Our Mission Badges Section (100% Vegan, Gluten Free, Natural Ingredients, Cruelty Free) */}
+      <OurMission />
 
       <div className="space-y-28 pt-24">
         {/* 3. Farm Promise & Organic Philosophy Banner */}
