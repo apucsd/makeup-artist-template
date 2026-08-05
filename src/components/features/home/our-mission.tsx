@@ -1,4 +1,4 @@
-import React from "react";
+
 
 export function OurMission() {
   const badgeItems = [
@@ -22,7 +22,6 @@ export function OurMission() {
       svg: (
         <svg className="w-28 h-28 sm:w-32 sm:h-32 text-[#48592B] opacity-90 stroke-[1]" viewBox="0 0 120 120" fill="none" stroke="currentColor">
           <circle cx="60" cy="60" r="50" strokeWidth="1.25" />
-          {/* Curved Text Arc */}
           <path id="glutenArcTop" d="M 22 60 A 38 38 0 0 1 98 60" fill="none" />
           <path id="glutenArcBot" d="M 98 60 A 38 38 0 0 1 22 60" fill="none" />
           <text fontSize="9" fontWeight="bold" letterSpacing="3" fill="#48592B">
@@ -31,7 +30,6 @@ export function OurMission() {
           <text fontSize="9" fontWeight="bold" letterSpacing="3" fill="#48592B">
             <textPath href="#glutenArcBot" startOffset="50%" textAnchor="middle">FREE</textPath>
           </text>
-          {/* Wheat Stalk */}
           <path d="M60 38 V82" strokeWidth="1.25" strokeLinecap="round" />
           <path d="M60 48 Q50 42 46 50 Q56 52 60 48 Z" strokeWidth="1" />
           <path d="M60 48 Q70 42 74 50 Q64 52 60 48 Z" strokeWidth="1" />
@@ -56,7 +54,6 @@ export function OurMission() {
           <text fontSize="7" fontWeight="bold" letterSpacing="2" fill="#48592B">
             <textPath href="#natArcBot" startOffset="50%" textAnchor="middle">INGREDIENTS</textPath>
           </text>
-          {/* Sprout Leaves */}
           <path d="M60 42 V78" strokeWidth="1.25" strokeLinecap="round" />
           <path d="M60 56 C50 40, 36 50, 60 62 C84 50, 70 40, 60 56 Z" strokeWidth="1" />
           <path d="M60 42 Q52 34 60 28 Q68 34 60 42 Z" strokeWidth="1" />
@@ -77,7 +74,6 @@ export function OurMission() {
           <text fontSize="8" fontWeight="bold" letterSpacing="2" fill="#48592B">
             <textPath href="#crueltyArcBot" startOffset="50%" textAnchor="middle">CRUELTY FREE</textPath>
           </text>
-          {/* Rabbit Silhouette Lineart */}
           <path
             d="M48 76 C42 74, 40 68, 44 64 C42 58, 48 50, 52 50 C54 44, 52 36, 56 36 C58 36, 56 46, 58 48 C62 38, 64 34, 68 36 C70 38, 64 48, 62 52 C66 54, 72 56, 74 62 C76 68, 72 76, 64 78 C56 79, 52 78, 48 76 Z"
             strokeWidth="1.25"
@@ -90,15 +86,15 @@ export function OurMission() {
   ];
 
   return (
-    <section className="w-full bg-white py-16 sm:py-20 font-sans border-t border-[#D6DBC4]/40">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center space-y-12">
-        {/* Title Header matching Image 1 */}
+    <section className="w-full bg-transparent py-16 sm:py-20 font-sans relative z-10 border-t border-[#D6DBC4]/40">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center space-y-12 bg-white/50 backdrop-blur-md p-8 sm:p-12 rounded-3xl border border-[#D6DBC4]/60 shadow-sm">
+        {/* Title Header */}
         <div className="space-y-4 max-w-xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-serif font-extrabold text-[#48592B] tracking-wider uppercase">
             OUR MISSION
           </h2>
 
-          {/* Ornamental Divider with central leaf motif */}
+          {/* Ornamental Divider */}
           <div className="flex items-center justify-center gap-3 text-[#A3B585]">
             <span className="w-2 h-2 rounded-full border border-[#85966E] bg-[#EAECE1]" />
             <div className="w-24 sm:w-36 h-[1.5px] bg-[#D6DBC4]" />
@@ -108,7 +104,7 @@ export function OurMission() {
           </div>
         </div>
 
-        {/* 4 Circular Outline Badges matching Image 2 */}
+        {/* 4 Circular Outline Badges */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center max-w-5xl mx-auto pt-4">
           {badgeItems.map((badge) => (
             <div

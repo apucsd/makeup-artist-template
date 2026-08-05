@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
-import localFont from "next/font/local";
+import { Plus_Jakarta_Sans, Playfair_Display, Outfit } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/common/navbar";
 import { Footer } from "@/components/common/footer";
@@ -12,10 +11,16 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   weight: ["400", "500", "600", "700", "800"],
 });
 
-const sidodadi = localFont({
-  src: "../../public/fonts/Sidodadi-Font/Sidodadi Light.ttf",
+const playfairDisplay = Playfair_Display({
   variable: "--font-serif",
-  display: "swap",
+  subsets: ["latin"],
+  weight: ["400", "600", "700", "800", "900"],
+});
+
+const outfit = Outfit({
+  variable: "--font-social-media",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -31,9 +36,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${plusJakartaSans.variable} ${sidodadi.variable} h-full antialiased`}
+      className={`${plusJakartaSans.variable} ${playfairDisplay.variable} ${outfit.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-stone-50/50 text-neutral-900 font-sans">
+      <body className="min-h-full flex flex-col bg-transparent text-neutral-900 font-sans">
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />

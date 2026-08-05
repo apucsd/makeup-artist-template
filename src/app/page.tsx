@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { HomeHero } from "@/components/features/home/hero";
-import { IngredientShowcase } from "@/components/features/home/ingredient-showcase";
+import { FloatingHeroUI } from "@/components/features/home/floating-hero-ui";
 import { OurMission } from "@/components/features/home/our-mission";
 import { SectionHeader } from "@/components/common/section-header";
 import { ServiceCard } from "@/components/features/services/service-card";
@@ -17,34 +17,31 @@ export default function HomePage() {
   const featuredIngredients = portfolioData.filter((p) => p.featured);
 
   return (
-    <div className="pb-28 bg-[#F8F9F3]">
-      {/* 1. 3D Pouch Canvas Hero Section */}
-      <HomeHero />
-
-      {/* 2. Full-Bleed Zero-Gap Ingredient Showcase Banner */}
-      <IngredientShowcase />
-
-      {/* 3. Our Mission Badges Section (100% Vegan, Gluten Free, Natural Ingredients, Cruelty Free) */}
+    <div className="pb-28 bg-transparent">
+      {/* 1. 3D Pouch Canvas Hero with Floating Glass UI Overlay & Parallax Mission */}
+      <HomeHero>
+        <FloatingHeroUI />
+      </HomeHero>
       <OurMission />
 
       <div className="space-y-28 pt-24">
-        {/* 3. Farm Promise & Organic Philosophy Banner */}
+        {/* 3. Farm Promise & Organic Philosophy Banner (Pastel Green Style) */}
         <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl bg-[#243314] text-white p-8 md:p-14 border border-[#42572C] shadow-xl relative overflow-hidden">
-            <div className="absolute -right-10 -bottom-10 w-80 h-80 bg-[#A4C46A]/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="rounded-3xl bg-[#EAECE1] text-[#2B3B18] p-8 md:p-14 border border-[#85966E] shadow-sm relative overflow-hidden">
+            <div className="absolute -right-10 -bottom-10 w-80 h-80 bg-[#A4C46A]/30 rounded-full blur-3xl pointer-events-none" />
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-8 space-y-4">
-                <span className="text-xs font-mono text-[#A4C46A] uppercase tracking-widest">
+                <span className="text-xs font-mono text-[#48592B] font-bold uppercase tracking-widest">
                   🌱 100% USDA Certified Organic Farm Promise
                 </span>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-normal leading-snug text-[#F5F7EF]">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold leading-snug text-[#18260B]">
                   "Zero added sugar, zero preservatives, and living-soil cultivation for nutrient-dense infant nutrition."
                 </h2>
               </div>
               <div className="lg:col-span-4 flex lg:justify-end">
                 <Link
                   href="/about"
-                  className="inline-flex items-center justify-center bg-[#A4C46A] hover:bg-[#92B262] text-[#18260B] font-bold px-7 py-3.5 rounded-full text-sm transition-colors shadow-md uppercase tracking-wider"
+                  className="inline-flex items-center justify-center bg-[#688542] hover:bg-[#48592B] text-white font-bold px-7 py-3.5 rounded-full text-sm transition-colors shadow-sm uppercase tracking-wider"
                 >
                   Our Farm Story →
                 </Link>
@@ -70,7 +67,7 @@ export default function HomePage() {
           <div className="mt-12 text-center">
             <Link
               href="/products"
-              className="inline-flex items-center justify-center rounded-full border border-[#D6DBC4] bg-white px-8 py-3.5 text-sm font-bold text-[#243314] hover:bg-[#243314] hover:text-white transition-colors shadow-sm uppercase tracking-wider"
+              className="inline-flex items-center justify-center rounded-full border border-[#85966E] bg-white px-8 py-3.5 text-sm font-bold text-[#243314] hover:bg-[#243314] hover:text-white transition-colors shadow-sm uppercase tracking-wider"
             >
               Explore Full Puree Catalog →
             </Link>
@@ -91,7 +88,7 @@ export default function HomePage() {
             <div className="mt-12 text-center">
               <Link
                 href="/ingredients-flavors"
-                className="inline-flex items-center justify-center bg-[#48592B] hover:bg-[#37461E] text-white rounded-full px-8 py-3.5 text-sm font-bold uppercase tracking-wider transition-colors shadow-md"
+                className="inline-flex items-center justify-center bg-[#688542] hover:bg-[#48592B] text-white rounded-full px-8 py-3.5 text-sm font-bold uppercase tracking-wider transition-colors shadow-md"
               >
                 Explore All Ingredient Pairings
               </Link>
@@ -148,24 +145,24 @@ export default function HomePage() {
           <InstagramFeed />
         </section>
 
-        {/* 9. Box Builder / Subscription CTA */}
+        {/* 9. Box Builder / Subscription CTA (Pastel Green Style) */}
         <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-3xl bg-[#18260B] text-white px-8 py-16 md:px-16 md:py-20 text-center shadow-2xl border border-[#42572C]">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-[#48592B]/40 via-transparent to-transparent pointer-events-none" />
+          <div className="relative overflow-hidden rounded-3xl bg-[#D7EDCA]/90 text-[#2B3B18] px-8 py-16 md:px-16 md:py-20 text-center shadow-lg border border-[#85966E]">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-[#A4C46A]/30 via-transparent to-transparent pointer-events-none" />
             <div className="relative z-10 max-w-2xl mx-auto space-y-6">
-              <span className="text-xs font-mono uppercase tracking-widest text-[#A4C46A] bg-[#243314] px-3 py-1 rounded-full border border-[#42572C]">
+              <span className="text-xs font-mono uppercase tracking-widest text-[#3E5028] bg-white/60 px-4 py-1.5 rounded-full border border-[#85966E] font-bold">
                 Free Insulated Shipping Over $35
               </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal leading-tight text-[#F5F7EF]">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold leading-tight text-[#18260B]">
                 Ready to Build Your Organic Pouch Box?
               </h2>
-              <p className="text-[#C7CEBA] text-base leading-relaxed">
+              <p className="text-[#3E5028] text-base leading-relaxed font-medium">
                 Customize a 16 or 24 pouch box filled with butternut squash, golden pumpkin, sweet banana, apple, and chickpea purees.
               </p>
               <div className="pt-2">
                 <Link
                   href="/shop"
-                  className="inline-flex items-center justify-center bg-[#A4C46A] hover:bg-[#92B262] text-[#18260B] font-bold px-9 py-4 rounded-full text-base transition-all transform hover:-translate-y-0.5 shadow-xl uppercase tracking-wider"
+                  className="inline-flex items-center justify-center bg-[#688542] hover:bg-[#48592B] text-white font-bold px-9 py-4 rounded-full text-base transition-all transform hover:-translate-y-0.5 shadow-md uppercase tracking-wider"
                 >
                   Build Custom Pouch Box Now
                 </Link>

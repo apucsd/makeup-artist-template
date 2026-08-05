@@ -33,14 +33,7 @@ export function Navbar() {
       quantity: 2,
       image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=800&auto=format&fit=crop",
     },
-    {
-      id: "sweet-potato-carrot",
-      title: "Sweet Potato & Golden Carrot",
-      stage: "Stage 2 (6+ mos)",
-      price: 3.79,
-      quantity: 1,
-      image: "https://images.unsplash.com/photo-1598170845058-12ef4a457539?q=80&w=800&auto=format&fit=crop",
-    },
+
   ]);
 
   const totalItemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
@@ -128,23 +121,25 @@ export function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 w-full bg-transparent">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-        {/* Reusable Brand Logo Component */}
-        <Logo />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
+
+        {/* Reusable Brand Logo Component with explicit right margin */}
+        <div className="shrink-0 mr-4 sm:mr-6 lg:mr-8">
+          <Logo />
+        </div>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-6 xl:gap-8 font-sans">
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-7 font-sans flex-1">
           {navigationConfig.mainNav.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-xs font-bold uppercase tracking-wider transition-colors ${
-                  isActive
-                    ? "text-[#243314] border-b-2 border-[#48592B] pb-0.5"
-                    : "text-[#48592B] hover:text-[#243314]"
-                }`}
+                className={`text-[11px] xl:text-xs font-bold uppercase tracking-wider transition-colors whitespace-nowrap ${isActive
+                    ? "text-[#18260B] border-b-2 border-[#48592B] pb-0.5"
+                    : "text-[#3E5028] hover:text-[#18260B]"
+                  }`}
               >
                 {item.title}
               </Link>
@@ -153,10 +148,10 @@ export function Navbar() {
         </nav>
 
         {/* Search Input Bar with Slider Line Indicator o------------o */}
-        <div className="hidden md:flex flex-col items-center relative">
+        <div className="hidden md:flex flex-col items-center relative shrink-0">
           <form
             onSubmit={handleSearchSubmit}
-            className="flex items-center bg-[#C7CEBA] hover:bg-[#BEC5B0] focus-within:bg-white border border-[#B8BFAB] rounded-full px-4 py-1 text-xs text-[#243314] transition-all w-52 sm:w-64 lg:w-72 justify-between"
+            className="flex items-center bg-[#C7CEBA]/90 hover:bg-[#BEC5B0] focus-within:bg-white border border-[#B8BFAB] rounded-full px-3.5 py-1 text-xs text-[#243314] transition-all w-44 sm:w-52 lg:w-60 justify-between backdrop-blur-sm"
           >
             <input
               type="text"
@@ -171,24 +166,24 @@ export function Navbar() {
           </form>
 
           <div className="w-[108%] flex items-center justify-between mt-1 pointer-events-none">
-            <span className="w-2 h-2 rounded-full border border-[#85966E] bg-[#EAECE1] shrink-0" />
+            <span className="w-1.5 h-1.5 rounded-full border border-[#85966E] bg-[#EAECE1] shrink-0" />
             <div className="flex-1 h-[1.5px] bg-[#85966E] mx-0.5" />
-            <span className="w-2 h-2 rounded-full border border-[#85966E] bg-[#EAECE1] shrink-0" />
+            <span className="w-1.5 h-1.5 rounded-full border border-[#85966E] bg-[#EAECE1] shrink-0" />
           </div>
         </div>
 
         {/* Basket & Hamburger Controls */}
-        <div className="flex items-center gap-3 sm:gap-4">
+        <div className="flex items-center gap-3 shrink-0 ml-2">
           {/* [ 3 ] Badge + [ MY BASKET ] Button */}
           <button
             onClick={toggleCartDrawer}
-            className="flex items-center gap-2 group focus:outline-none"
+            className="flex items-center gap-1.5 group focus:outline-none"
             aria-label="Open Basket Cart Drawer"
           >
-            <div className="bg-[#48592B] group-hover:bg-[#37461E] border-2 border-[#A3B585] text-white font-bold text-xs w-6 h-6 rounded-sm flex items-center justify-center shadow-sm transition-colors">
+            <div className="bg-[#48592B] group-hover:bg-[#37461E] border border-[#A3B585] text-white font-bold text-xs w-6 h-6 rounded-xs flex items-center justify-center shadow-xs transition-colors">
               {totalItemCount}
             </div>
-            <span className="bg-[#48592B] group-hover:bg-[#37461E] text-white font-bold text-xs uppercase px-3.5 py-1 rounded-sm tracking-wider shadow-sm transition-colors inline-block">
+            <span className="bg-[#48592B] group-hover:bg-[#37461E] text-white font-bold text-[11px] uppercase px-3 py-1 rounded-xs tracking-wider shadow-xs transition-colors whitespace-nowrap">
               MY BASKET
             </span>
           </button>
@@ -196,7 +191,7 @@ export function Navbar() {
           {/* Reusable Hamburger Menu Toggle Icon Component */}
           <button
             onClick={toggleDrawer}
-            className="p-1.5 text-[#48592B] hover:text-[#243314] focus:outline-none transition-colors"
+            className="p-1 text-[#48592B] hover:text-[#18260B] focus:outline-none transition-colors ml-1"
             aria-label="Toggle Navigation Drawer"
           >
             <HamburgerIcon />

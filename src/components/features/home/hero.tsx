@@ -1,8 +1,6 @@
 "use client";
 
-import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
-import { siteConfig } from "@/config/site";
 
 const TOTAL_USER_FRAMES = 112;
 
@@ -11,7 +9,11 @@ const getUserFramePath = (index: number) => {
   return `/user-hero-frames/frame-${frameNumber}.jpg`;
 };
 
-export function HomeHero() {
+interface HomeHeroProps {
+  children?: React.ReactNode;
+}
+
+export function HomeHero({ children }: HomeHeroProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const imagesRef = useRef<HTMLImageElement[]>([]);
@@ -83,7 +85,7 @@ export function HomeHero() {
     return () => window.removeEventListener("resize", handleResize);
   }, [currentFrame]);
 
-  // Sticky Scroll Handler
+  // Fast Parallax Scroll Handler (180vh scroll height for immediate responsive feel)
   useEffect(() => {
     let ticking = false;
 
@@ -123,58 +125,30 @@ export function HomeHero() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Smooth scroll-driven text fade
-  const textOpacity = scrollProgress > 0.03
-    ? Math.max(0, 1 - (scrollProgress - 0.03) * 6)
-    : 1;
+  // Immediate upward parallax translation: starts moving up right away on scroll
+  const parallaxOffset = Math.max(0, (1 - scrollProgress) * 75);
 
   return (
-    <div ref={containerRef} className="relative h-[250vh] bg-transparent">
-      {/* Sticky Viewport Shell */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
-        {/* Full Viewport Canvas Layer */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <canvas
-            ref={canvasRef}
-            className="h-full w-full object-cover opacity-100"
-          />
-        </div>
+    <div ref={containerRef} className="relative h-[180vh] bg-transparent">
+      {/* Sticky Viewport Shell for 3D Canvas */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center pointer-events-none">
+        <canvas
+          ref={canvasRef}
+          className="h-full w-full object-cover opacity-100"
+        />
+      </div>
 
-        {/* Content Typography Overlay - Hidden on Mobile, Shown on Desktop/Tablet */}
+      {/* Parallax Overlay Container - Ascends Immediately & Smoothly */}
+      {children && (
         <div
-          className="hidden sm:flex relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full py-12 transition-all duration-300 ease-out flex-col justify-between h-full"
+          className="relative z-10 w-full transition-transform duration-75 ease-out"
           style={{
-            opacity: textOpacity,
-            transform: `translateY(${(-1 + textOpacity) * 20}px)`,
-            pointerEvents: textOpacity < 0.1 ? "none" : "auto",
+            transform: `translateY(${parallaxOffset}vh)`,
           }}
         >
-          {/* Spacer for Navbar */}
-          <div className="h-24" />
-
-
-
-          {/* Bottom Scroll Cue */}
-          <div className="text-center animate-bounce text-xs font-mono text-emerald-900 font-semibold tracking-widest uppercase pb-4">
-            ↓ Scroll down to explore pouch animation
-          </div>
+          {children}
         </div>
-
-        {/* Minimal Scroll Indicator for Mobile Devices */}
-        <div className="sm:hidden absolute bottom-6 inset-x-0 z-10 text-center animate-bounce text-xs font-mono text-emerald-950 font-bold tracking-widest uppercase pointer-events-none drop-shadow-md">
-          ↓ SCROLL DOWN
-        </div>
-
-        {/* Floating Frame Badge when text is hidden */}
-        {textOpacity < 0.2 && (
-          <div className="absolute bottom-6 right-6 z-20 bg-emerald-950/90 border border-emerald-400/50 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[10px] sm:text-xs font-mono backdrop-blur-md shadow-2xl transition-all duration-300 flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
-            <span className="text-emerald-200 font-semibold">
-              ANIMATION {Math.round(scrollProgress * 100)}%
-            </span>
-          </div>
-        )}
-      </div>
+      )}
     </div>
   );
 }
